@@ -1,17 +1,28 @@
 import { createApp } from 'vue'
-import './style.css'
-import AOS from 'aos';
-import 'aos/dist/aos.css'; // You can also use <link> for styles
-// ..
-AOS.init();
-AOS.init({
-    duration: 1300, // Animaciones más suaves
-    easing: 'ease-in-out',
-    once: false, // Solo se anima una vez por elemento
-    mirror: true, // Se anima al entrar y salir
-  });
-  
 import App from './App.vue'
+import './style.css'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import Vue3Toastify from 'vue3-toastify'
+import 'vue3-toastify/dist/index.css'
 
 
-createApp(App).mount('#app')
+// Inicializa AOS
+AOS.init({
+  duration: 1300,
+  easing: 'ease-in-out',
+  once: false,
+  mirror: true,
+})
+
+// Crea la app y registra Toastify
+createApp(App)
+  .use(Vue3Toastify, {
+    autoClose: 3000,
+    position: 'top-right',
+    pauseOnHover: true,
+    theme: 'auto',
+    closeOnClick: true,
+    hideProgressBar: false,
+  })
+  .mount('#app')

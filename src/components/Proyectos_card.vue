@@ -9,35 +9,36 @@ defineProps({
 </script>
 
 <template>
-    <div class="relative w-full" data-aos="fade-down">
-        <!-- Fondo con blur -->
-        <div class="absolute inset-0 bg-terciario opacity-25 blur-lg rounded-lg"></div>
-        
-        <!-- Contenido principal -->
-        <div class="p-4 shadow rounded text-white relative z-10 font-primario text-center max-w-full">
-            <h1 class="font-bold text-2xl">{{ nombre_proyecto }}</h1> 
-
-            <!-- Imagen (Asegurar que no sea más grande que el contenedor) -->
-            <div class="flex justify-center py-10">
-                <img :src="src" :alt="alt" :class="['max-w-full', sizeImage]">
+    <div
+        class=" bg-neutral-900 rounded-2xl font-primario hover:shadow-lg hover:shadow-white hover:transition hover:duration-600">
+        <div class="relative ">
+            <div class="bg-neutral-900/80 absolute w-full text-wrap rounded-t-2xl text-center">
+                <h1 class="font-bold text-md  lg:text-lg px-2">{{ nombre_proyecto }}</h1>
             </div>
+            <div class="flex justify-center">
+                <img :src="src" :alt="alt" :class="['max-w-full', 'rounded-t-2xl', sizeImage]">
+            </div>
+            
+
+        </div>
+        <div class="p-5">
 
             <!-- Texto (Evitar text-justify si causa problemas en móviles) -->
-            <div>
+            <div class="">
                 <p class="text-lg text-justify">{{ descripcion }}</p>
             </div>
-
-            <!-- Botón -->
-            <div class="flex justify-end pt-4">
-                <a href="#" class="bg-secundario hover:bg-red-800 rounded-2xl px-5 py-2 hover:animate-jump hover:animate-duration-1000">
-                    <i class="fa-solid fa-magnifying-glass"></i> Ver más detalles
-                </a>
+            <div>
+                <div class="flex justify-end pt-4">
+                    <a href="#"
+                        class="bg-secundario hover:bg-red-800 rounded-2xl px-5 py-2 hover:animate-jump hover:animate-duration-1000">
+                        <i class="fa-solid fa-magnifying-glass"></i> Ver más detalles
+                    </a>
+                </div>
             </div>
         </div>
+
     </div>
 </template>
 
 
-<style>
-
-</style>
+<style></style>

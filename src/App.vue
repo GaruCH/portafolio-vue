@@ -2,34 +2,46 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 import Navbar from './components/Navbar.vue';
 import Hero from './components/Hero.vue';
-import Proyectos from './components/Proyectos.vue'
+import Proyectos from './components/Proyectos.vue';
 import Contact from './components/Contact.vue';
 import Footer from './components/Footer.vue';
+import Tecnologias from './components/Tecnologias.vue';
 
-// Estado para controlar la posición del degradado
 const scrollY = ref(0);
+const windowHeight = ref(window.innerHeight);
 
-// Función para actualizar el estado con el scroll
+// Función para actualizar el estado con el scroll y altura de la ventana
 const handleScroll = () => {
   scrollY.value = window.scrollY;
 };
+const updateHeight = () => {
+  windowHeight.value = window.innerHeight;
+};
 
-// Agregar y remover el evento de scroll
-onMounted(() => window.addEventListener('scroll', handleScroll));
-onUnmounted(() => window.removeEventListener('scroll', handleScroll));
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll);
+  window.addEventListener('resize', updateHeight);
+  updateHeight();
+});
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll);
+  window.removeEventListener('resize', updateHeight);
+});
 </script>
 
 <template>
-  <div class="min-h-screen transition-all duration-500" data-aos="fade-down" :style="{
-    background: `radial-gradient(at 50% ${scrollY / 5}%, var(--color-secundario), var(--color-primario) 80%)`
-  }">
-    <!-- Navbar que sigue siendo sticky -->
+  <div :style="{
+    minHeight: windowHeight + 'px',
+    background: `radial-gradient(at 50% ${scrollY / 5}%, var(--color-secundario), var(--color-primario) 70%)`
+  }" class="transition-all duration-500" data-aos="fade-down" id="Inicio">
+    <!-- Navbar -->
     <Navbar />
 
-    <!-- Contenido que puede desbordarse (pero con overflow-hidden) -->
+
     <div class="overflow-hidden">
       <Hero />
       <Proyectos />
+      <Tecnologias />
       <Contact />
       <Footer />
     </div>
@@ -38,9 +50,9 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll));
 
 <style>
 :root {
-  --color-secundario: #7f1d1d;
+  --color-secundario: #82181a;
   /* Rojo oscuro */
-  --color-primario: #171717;
+  --color-primario: #000;
   /* Gris oscuro */
 }
 </style>
